@@ -55,7 +55,7 @@ class TitleState extends MusicBeatState
 		trace('NEWGROUNDS LOL');
 		#end
 
-		FlxG.save.bind('funkin', 'salmonheartnsoul');
+		FlxG.save.bind('funkinuser', 'salmonheartnsoul');
 
 		PlayerSettings.init();
 
