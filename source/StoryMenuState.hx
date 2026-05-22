@@ -133,7 +133,7 @@ class StoryMenuState extends MusicBeatState
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
 					weekCharacterThing.updateHitbox();
 					weekCharacterThing.x -= 60;
-					weekCharacterThing.y += 300;
+					weekCharacterThing.y -= 300;
 			}
 
 			grpWeekCharacters.add(weekCharacterThing);
