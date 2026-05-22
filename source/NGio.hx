@@ -11,8 +11,8 @@ class NGio
     public static var scoreboardArray:Array<Dynamic> = [];
     public static var ngDataLoaded(default, null):FlxSignal = new FlxSignal();
     public static var ngScoresLoaded(default, null):FlxSignal = new FlxSignal();
-    public static var GAME_VER:String = "v0.2.7.1";
-    public static var GAME_VER_NUMS:String = "0.2.7.1";
+    public static var GAME_VER:String = "v0.2.4";
+    public static var GAME_VER_NUMS:String = "0.2.4";
     public static var gotOnlineVer:Bool = false;
 
     public static function noLogin(api:String) { trace('NGio stubbed, skipping'); }
