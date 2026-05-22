@@ -22,7 +22,7 @@ class StoryMenuState extends MusicBeatState
 		['Bopeebo', 'Fresh', 'Dadbattle'],
 		['Spookeez', 'South'],
 		['Pico', 'Philly', "Blammed"],
-		['Startup', 'Overwrite', 'Remnant']
+		['Startup']
 	];
 	var curDifficulty:Int = 1;
 
