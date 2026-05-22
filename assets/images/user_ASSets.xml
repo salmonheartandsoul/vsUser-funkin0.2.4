@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="user_ASSets.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="User idle dance0000" x="20" y="20" width="489" height="217" frameX="0" frameY="-35" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0001" x="20" y="20" width="489" height="217" frameX="0" frameY="-35" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0002" x="529" y="20" width="489" height="227" frameX="0" frameY="-25" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0003" x="529" y="20" width="489" height="227" frameX="0" frameY="-25" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0004" x="1038" y="20" width="489" height="237" frameX="0" frameY="-15" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0005" x="1038" y="20" width="489" height="237" frameX="0" frameY="-15" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0006" x="20" y="277" width="489" height="245" frameX="0" frameY="-7" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0007" x="20" y="277" width="489" height="245" frameX="0" frameY="-7" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0008" x="20" y="277" width="489" height="245" frameX="0" frameY="-7" frameWidth="489" frameHeight="252"/>
+	<SubTexture name="User idle dance0009" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0010" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0011" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0012" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0013" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0014" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0015" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0016" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0017" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0018" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0019" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0020" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0021" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0022" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User idle dance0023" x="529" y="277" width="489" height="252"/>
+	<SubTexture name="User sing down0000" x="1038" y="277" width="489" height="227"/>
+	<SubTexture name="User sing down0001" x="20" y="549" width="489" height="207" frameX="0" frameY="-20" frameWidth="489" frameHeight="227"/>
+	<SubTexture name="User sing down0002" x="20" y="549" width="489" height="207" frameX="0" frameY="-20" frameWidth="489" frameHeight="227"/>
+	<SubTexture name="User sing down0003" x="20" y="549" width="489" height="207" frameX="0" frameY="-20" frameWidth="489" frameHeight="227"/>
+	<SubTexture name="User sing down0004" x="20" y="549" width="489" height="207" frameX="0" frameY="-20" frameWidth="489" frameHeight="227"/>
+	<SubTexture name="User sing left0000" x="529" y="549" width="489" height="238"/>
+	<SubTexture name="User sing left0001" x="1038" y="549" width="489" height="236" frameX="0" frameY="-2" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing left0002" x="20" y="807" width="489" height="231" frameX="0" frameY="-7" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing left0003" x="20" y="807" width="489" height="231" frameX="0" frameY="-7" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing left0004" x="20" y="807" width="489" height="231" frameX="0" frameY="-7" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing right0000" x="529" y="807" width="489" height="238"/>
+	<SubTexture name="User sing right0001" x="1038" y="807" width="489" height="229" frameX="0" frameY="-9" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing right0002" x="1038" y="807" width="489" height="229" frameX="0" frameY="-9" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing right0003" x="1038" y="807" width="489" height="229" frameX="0" frameY="-9" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing right0004" x="1038" y="807" width="489" height="229" frameX="0" frameY="-9" frameWidth="489" frameHeight="238"/>
+	<SubTexture name="User sing up0000" x="20" y="1065" width="489" height="247" frameX="0" frameY="-18" frameWidth="489" frameHeight="265"/>
+	<SubTexture name="User sing up0001" x="529" y="1065" width="489" height="265"/>
+	<SubTexture name="User sing up0002" x="529" y="1065" width="489" height="265"/>
+	<SubTexture name="User sing up0003" x="529" y="1065" width="489" height="265"/>
+	<SubTexture name="User sing up0004" x="529" y="1065" width="489" height="265"/>
+</TextureAtlas>
