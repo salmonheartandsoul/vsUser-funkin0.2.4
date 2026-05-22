@@ -25,7 +25,7 @@ import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import haxe.Json;
 import openfl.events.Event;
-import openfl.events.IOErrorEvent; // FIX: removed the two duplicate IOErrorEvent imports
+import openfl.events.IOErrorEvent;
 import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.ByteArray;
@@ -38,10 +38,6 @@ class ChartingState extends MusicBeatState
 
 	var UI_box:FlxUITabMenu;
 
-	/**
-	 * Array of notes showing when each section STARTS in STEPS
-	 * Usually rounded up??
-	 */
 	var curSection:Int = 0;
 
 	var bpmTxt:FlxText;
@@ -49,7 +45,7 @@ class ChartingState extends MusicBeatState
 	var strumLine:FlxSprite;
 	var curSong:String = 'Dadbattle';
 	var amountSteps:Int = 0;
-	var bullshitUI:FlxGroup; // FIX: initialized in create() below
+	var bullshitUI:FlxGroup;
 
 	var GRID_SIZE:Int = 40;
 
@@ -59,51 +55,32 @@ class ChartingState extends MusicBeatState
 	var curRenderedSustains:FlxTypedGroup<FlxSprite>;
 
 	var gridBG:FlxSprite;
-	// Vertical separator between opponent (left) and player (right) columns
 	var gridSeparator:FlxSprite;
 
 	var _song:SwagSong;
 
 	var typingShit:FlxInputText;
-	/*
-	 * WILL BE THE CURRENT / LAST PLACED NOTE
-	**/
 	var curSelectedNote:Array<Dynamic>;
 
 	var tempBpm:Int = 0;
 
 	var vocals:FlxSound;
 
-	// FIX: guard flag so section auto-advance only fires once per crossing
 	var _lastAutoAdvanceSection:Int = -1;
 
 	override function create()
 	{
 		FlxG.mouse.visible = true;
 
-		// FIX: bullshitUI was declared but never instantiated — would crash in generateUI()
 		bullshitUI = new FlxGroup();
 		add(bullshitUI);
 
 		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 8, GRID_SIZE * 16);
 		add(gridBG);
 
-		// Separator line between opponent (cols 0-3) and player (cols 4-7)
+		// Separator line between opponent and player
 		gridSeparator = new FlxSprite(GRID_SIZE * 4, 0).makeGraphic(2, GRID_SIZE * 16, FlxColor.fromRGB(255, 255, 255, 200));
 		add(gridSeparator);
-
-		// Column header labels — screen-fixed so they always sit above the grid
-		var labelOpponent = new FlxText(0, 5, GRID_SIZE * 4, "OPPONENT", 12);
-		labelOpponent.alignment = CENTER;
-		labelOpponent.color = FlxColor.fromRGB(255, 120, 120);
-		labelOpponent.scrollFactor.set();
-		add(labelOpponent);
-
-		var labelPlayer = new FlxText(GRID_SIZE * 4, 5, GRID_SIZE * 4, "PLAYER", 12);
-		labelPlayer.alignment = CENTER;
-		labelPlayer.color = FlxColor.fromRGB(120, 200, 255);
-		labelPlayer.scrollFactor.set();
-		add(labelPlayer);
 
 		curRenderedNotes = new FlxTypedGroup<Note>();
 		curRenderedSustains = new FlxTypedGroup<FlxSprite>();
@@ -178,7 +155,7 @@ class ChartingState extends MusicBeatState
 		typingShit = UI_songTitle;
 
 		var check_voices = new FlxUICheckBox(10, 35, null, null, "Has voice track", 100);
-		// FIX: was always hardcoded to true; now reads from the actual song data
+		// FIX: was always hardcoded to true, now reads from the actual song data
 		check_voices.checked = _song.needsVoices;
 		check_voices.callback = function()
 		{
@@ -308,7 +285,6 @@ class ChartingState extends MusicBeatState
 		stepperSusLength.value = 0;
 		stepperSusLength.name = 'note_susLength';
 
-		// FIX: applyLength button had no callback — it now actually applies the sustain length
 		var applyLength:FlxButton = new FlxButton(150, 13, 'Apply', function()
 		{
 			if (curSelectedNote != null)
@@ -346,7 +322,7 @@ class ChartingState extends MusicBeatState
 
 		FlxG.sound.playMusic('assets/music/' + daSong + "_Inst" + TitleState.soundExt, 0.6);
 
-		// FIX: only load voices if the song actually needs them
+		// only load voices if the song actually needs them
 		if (_song.needsVoices)
 		{
 			vocals = new FlxSound().loadEmbedded("assets/music/" + daSong + "_Voices" + TitleState.soundExt);
@@ -452,9 +428,6 @@ class ChartingState extends MusicBeatState
 
 		strumLine.y = getYfromStrum(Conductor.songPosition % (Conductor.stepCrochet * lengthBpmBullshit()));
 
-		// FIX: was `curBeat % 4 == 0` which fired on EVERY beat divisible by 4, not just
-		// when crossing into a new section. Guard with _lastAutoAdvanceSection so it only
-		// triggers once per actual section boundary crossing.
 		if (curStep > _song.notes[curSection].lengthInSteps * (curSection + 1) && _lastAutoAdvanceSection != curSection + 1)
 		{
 			_lastAutoAdvanceSection = curSection + 1;
@@ -550,7 +523,7 @@ class ChartingState extends MusicBeatState
 					changeSection(curSection);
 			}
 
-			// Mouse wheel scrubs the strumline one step at a time
+			// Mouse wheel scrubs the strumline one step at a time i think
 			if (FlxG.mouse.wheel != 0)
 			{
 				FlxG.sound.music.pause();
@@ -577,7 +550,7 @@ class ChartingState extends MusicBeatState
 				vocals.time = FlxG.sound.music.time;
 			}
 
-			// Q decreases sustain on selected note, E increases it, both by one step
+			// QoL: Q decreases sustain on selected note, E increases it, both by one step
 			if (curSelectedNote != null)
 			{
 				if (FlxG.keys.justPressed.E)
@@ -605,7 +578,7 @@ class ChartingState extends MusicBeatState
 		if (FlxG.keys.justPressed.LEFT)
 			changeSection(curSection - shiftThing);
 
-		// FIX: removed the double-assignment `bpmTxt.text = bpmTxt.text = ...`
+		// FIX: removed the double-assignment `bpmTxt.text = bpmTxt.text = ...` (what thef fuh was you thinkin ninjamuffin)
 		bpmTxt.text = Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2))
 			+ " / "
 			+ Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2))
@@ -621,7 +594,7 @@ class ChartingState extends MusicBeatState
 
 		for (i in 0...curSection)
 		{
-			// FIX: was hardcoded to 16; now uses the section's actual lengthInSteps
+			// FIX: was hardcoded to 16, now uses the section's actual lengthInSteps
 			steps += _song.notes[i].lengthInSteps;
 
 			if (_song.notes[i].changeBPM)
@@ -651,15 +624,12 @@ class ChartingState extends MusicBeatState
 			{
 				FlxG.sound.music.pause();
 				vocals.pause();
-				// FIX: old loop called lengthBpmBullshit() every iteration but curSection
-				// was already set to sec, so it always used sec's length — wrong for
-				// songs with variable section lengths or per-section BPMs.
 				FlxG.sound.music.time = getSectionStartTime(sec);
 				vocals.time = FlxG.sound.music.time;
 				updateCurStep();
 			}
 
-			// FIX: was called twice (before and after updateMusic), causing a double redraw
+			// FIX: was called twice (before and after updateMusic), causing a double redraw for no apparent reason
 			updateGrid();
 			updateSectionUI();
 		}
@@ -697,10 +667,6 @@ class ChartingState extends MusicBeatState
 			stepperSusLength.value = curSelectedNote[2];
 	}
 
-	/**
-	 * Returns the absolute song time (ms) at which the given section starts,
-	 * correctly accounting for variable section lengths and per-section BPMs.
-	 */
 	function getSectionStartTime(sec:Int):Float
 	{
 		var time:Float = 0;
@@ -757,9 +723,6 @@ class ChartingState extends MusicBeatState
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.x = Math.floor(daNoteInfo * GRID_SIZE);
-			// FIX: use section-relative time so notes land on the correct grid row.
-			// The old code passed the absolute timestamp, which is only correct for
-			// section 0; all other sections wrapped via % gridBG.height and landed wrong.
 			note.y = Math.floor(getYfromStrum(daStrumTime - sectionStartTime));
 
 			curRenderedNotes.add(note);
@@ -793,8 +756,6 @@ class ChartingState extends MusicBeatState
 
 		for (i in _song.notes[curSection].sectionNotes)
 		{
-			// FIX: was using field access (i.strumTime / i.noteData) on a raw Array<Dynamic>
-			// which always evaluates to null — must use index access like deleteNote does
 			if (i[0] == note.strumTime && i[1] % 4 == note.noteData)
 			{
 				curSelectedNote = _song.notes[curSection].sectionNotes[swagNum];
@@ -833,10 +794,6 @@ class ChartingState extends MusicBeatState
 
 	private function addNote():Void
 	{
-		// FIX: was using hardcoded `16` — must use lengthBpmBullshit() to account for
-		// sections that aren't 16 steps long and per-section BPM changes
-		// FIX: use getSectionStartTime() instead of the naive curSection * stepCrochet * 16
-		// so notes placed in any section have the correct absolute strum time
 		var noteStrum = getStrumTime(dummyArrow.y) + getSectionStartTime(curSection);
 		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
@@ -874,7 +831,7 @@ class ChartingState extends MusicBeatState
 		{
 			var swagLength = i.lengthInSteps;
 
-			// FIX: `swagLength * 2` computed and discarded the result — changed to `*=`
+			// FIX: `swagLength * 2` computed and discarded the result, changed to `*=`
 			if (i.typeOfSection == Section.COPYCAT)
 				swagLength *= 2;
 
@@ -943,9 +900,6 @@ class ChartingState extends MusicBeatState
 		FlxG.log.notice("Successfully saved LEVEL DATA.");
 	}
 
-	/**
-	 * Called when the save file dialog is cancelled.
-	 */
 	function onSaveCancel(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
@@ -954,9 +908,6 @@ class ChartingState extends MusicBeatState
 		_file = null;
 	}
 
-	/**
-	 * Called if there is an error while saving the gameplay recording.
-	 */
 	function onSaveError(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
